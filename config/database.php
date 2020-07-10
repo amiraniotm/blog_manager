@@ -49,7 +49,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'blog_manager'),
             'username' => env('DB_USERNAME', 'amiraniotm'),
-            'password' => env('DB_PASSWORD', 'JncYZhQFY8.X2AjUTfNvG'),
+            'password' => env('DB_PASSWORD', '5c130cd9'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
