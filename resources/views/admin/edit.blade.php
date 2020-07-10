@@ -19,9 +19,18 @@
       <div class="col-sm-4">
         {!! Html::linkRoute('admin.show','Cancel',array($post->id),array('class'=>"btn btn-danger")) !!}
       </div>
-      <div class="col-sm-4">
-        {{ Form::submit('Save changes',array('class'=>'btn btn-success'))}}
-      </div>
+      @if($post->status === 'posted')
+        <div class="col-sm-4">
+          {{ Form::submit('Save changes',array('class'=>'btn btn-success'))}}
+        </div>
+      @elseif($post->status === 'draft')
+        <div class="col-sm-6">
+          {{ Form::submit('Save changes',array('class'=>'btn btn-primary'))}}
+        </div>
+        <div class="col-sm-6">
+          {{ Form::submit('Post',array('class'=>'btn btn-success','name'=>'postbutton'))}}
+        </div>
+      @endif
     </div>
     {!! Form::close() !!}
   </div>

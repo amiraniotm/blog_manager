@@ -13,6 +13,10 @@
           <p><a href="{{ url('blog/'.$post->slug) }}">{{url('blog/'.$post->slug)}}</a></p>
         </dl>
         <dl class="dl-horizontal">
+          <label>Status:</label>
+          <p>{{ $post->status }}</a></p>
+        </dl>
+        <dl class="dl-horizontal">
           <label>Created at:</label>
           <p>{{ date('M j, Y h:ia',strtotime($post->created_at)) }}</p>
         </dl>
@@ -27,7 +31,6 @@
           </div>
           <div class="col-sm-6">
             {!! Form::open(array('route' => array('admin.destroy',$post->id),'method'=>'DELETE')) !!}
-
               {!! Form::submit('Delete',array('class'=>'btn btn-danger btn-block')) !!}
 
             {!! Form::close() !!}

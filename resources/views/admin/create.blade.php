@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', '| Create New Post')
-
 @section('stylesheets')
 
     {{!! Html::style('css/parsley.css') !!}}
@@ -27,7 +25,8 @@
         {{Form::label('body','Post Body:',array('style'=> 'margin-top:20px;'))}}
         {{Form::textarea('body',null,array('class'=>'form-control','required'=>''))}}
         <div class="container">
-          {{Form::submit('Create Post',array('class' => 'btn btn-success btn-lg','style'=> 'margin-top: 20px; margin-bottom:20px;'))}}
+          {{Form::submit('Create Post',array('class' => 'btn btn-success btn-lg','name'=>'submitbutton','value'=>'save', 'style'=> 'margin-top: 20px; margin-bottom:20px; margin-right:20px;'))}}
+          {{Form::submit('Save As Draft',array('class' => 'btn btn-lg', 'name'=>'submitbutton','value'=>'save-draft', 'style'=> 'margin-top: 20px; margin-bottom:20px;'))}}
         </div>
       {!! Form::close() !!}
     </div>
