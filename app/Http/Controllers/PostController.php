@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id','desc')->paginate(10);
+        $user = auth()->user();
+        $posts = Post::orderBy('id','desc')->where('email','=',$user->email)->paginate(10);
 
         return view('admin.index')->withPosts($posts);
     }
@@ -44,12 +45,20 @@ class PostController extends Controller
           'body'  => 'required'
         ));
 
+        $user = auth()->user();
         $post = new Post;
 
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->body = $request->body;
-        $post->status = 'posted';
+        $post->email = $user->email;
+
+        if($request->submitbutton == 'save'){
+          $post->status = 'posted';
+        }
+        else{
+          $post->status = 'draft';
+        }
         $post->save();
 
         Session::flash('success','The blog post was succesfully saved!');
@@ -65,8 +74,16 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        $user = auth()->user();
         $post = Post::find($id);
-        return view('admin.show')->withPost($post);
+
+        if ($user->email == $post->email) {
+          return view('admin.show')->withPost($post);
+        }
+        else {
+          return view('admin.forbidden');
+        }
+
     }
 
     /**
@@ -77,8 +94,15 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $user = auth()->user();
         $post = Post::find($id);
-        return view('admin.edit')->withPost($post);
+
+        if ($user->email == $post->email) {
+          return view('admin.edit')->withPost($post);
+        }
+        else {
+          return view('admin.forbidden');
+        }
     }
 
     /**
@@ -88,8 +112,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
       $post = Post::find($id);
       if ($request->input('slug') == $post->slug) {
         $this->validate($request,array(
@@ -110,6 +133,9 @@ class PostController extends Controller
       $post->slug = $request->input('slug');
       $post->body = $request->input('body');
 
+      if($request->postbutton){
+        $post->status = 'posted';
+      }
       $post->save();
 
       Session::flash('success','The blog post was succesfully modified!');
@@ -128,8 +154,8 @@ class PostController extends Controller
         $post = Post::find($id);
 
         $post->delete();
-
         Session::flash('success','The post was successfully deleted');
+
         return redirect()->route('admin.index');
 
     }
