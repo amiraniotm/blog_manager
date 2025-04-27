@@ -1,10 +1,7 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## About
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This is a simple blog manager created in Laravel. I made it as a way to learn basic Laravel back in the day!
 
-This is a simple blog manager created in Laravel. It allows you to create, view, edit and erase posts from a mockup blog. It includes authentication with email address via laravel builtin authentication system.
+It allows you to create, view, edit and erase posts from a mockup blog. It includes authentication with email address via Laravel builtin authentication system.
+
+I deployed it using Heroku but this is not active any longer, please check more updated projects ; )
